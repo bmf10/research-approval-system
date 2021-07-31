@@ -1,6 +1,6 @@
 /*
 SQLyog Enterprise v12.09 (64 bit)
-MySQL - 10.4.8-MariaDB : Database - donation
+MySQL - 10.4.8-MariaDB : Database - penelitian
 *********************************************************************
 */
 
@@ -12,60 +12,100 @@ MySQL - 10.4.8-MariaDB : Database - donation
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`donation` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`penelitian` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `donation`;
+USE `penelitian`;
 
-/*Table structure for table `donations` */
+/*Table structure for table `evaluasi` */
 
-DROP TABLE IF EXISTS `donations`;
+DROP TABLE IF EXISTS `evaluasi`;
 
-CREATE TABLE `donations` (
+CREATE TABLE `evaluasi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `donator` int(11) DEFAULT NULL,
-  `date` datetime DEFAULT current_timestamp(),
+  `id_penelitian` int(11) DEFAULT NULL,
+  `status` varchar(120) DEFAULT NULL,
+  `komentar` text DEFAULT NULL,
+  `id_pengecek` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `donations` */
+/*Data for the table `evaluasi` */
 
-/*Table structure for table `donators` */
+/*Table structure for table `penelitian` */
 
-DROP TABLE IF EXISTS `donators`;
+DROP TABLE IF EXISTS `penelitian`;
 
-CREATE TABLE `donators` (
+CREATE TABLE `penelitian` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `gender` enum('Male','Female') DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `amount_of_donation` int(11) DEFAULT 0,
+  `id_user` int(11) DEFAULT NULL,
+  `judul` varchar(120) DEFAULT NULL,
+  `lokasi` varchar(120) DEFAULT NULL,
+  `jumlah_anggota` int(11) DEFAULT NULL,
+  `jumlah_biaya` double DEFAULT NULL,
+  `objek_penelitian` varchar(120) DEFAULT NULL,
+  `masa_pelaksanaan` year(4) DEFAULT NULL,
+  `target_temuan` varchar(120) DEFAULT NULL,
+  `abstrak` text DEFAULT NULL,
+  `tanggal_pelaksanaan` datetime DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `donators` */
+/*Data for the table `penelitian` */
 
-insert  into `donators`(`id`,`name`,`gender`,`address`,`amount_of_donation`) values (1,'Hamba Allah','Male','Pontianak',0);
+/*Table structure for table `pernyataan` */
 
-/*Table structure for table `users` */
+DROP TABLE IF EXISTS `pernyataan`;
 
-DROP TABLE IF EXISTS `users`;
-
-CREATE TABLE `users` (
+CREATE TABLE `pernyataan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `gender` enum('Male','Female') DEFAULT NULL,
-  `birth_date` date DEFAULT NULL,
+  `id_evaluasi` int(11) DEFAULT NULL,
+  `pernyataan` varchar(120) DEFAULT NULL,
+  `bobot` int(11) DEFAULT NULL,
+  `nilai` varchar(120) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Data for the table `users` */
+/*Data for the table `pernyataan` */
 
-insert  into `users`(`id`,`name`,`username`,`password`,`address`,`gender`,`birth_date`) values (11,'admin','admin','$2y$10$zwGMFLhIMJw8s.ejGVUHXulVTRcu1cAlQgAiGKXjy1uN8s9ByceBy','-','Male','1998-02-10');
+/*Table structure for table `tahapan` */
+
+DROP TABLE IF EXISTS `tahapan`;
+
+CREATE TABLE `tahapan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_penelitian` int(11) DEFAULT NULL,
+  `file` text DEFAULT NULL,
+  `status` varchar(120) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `tahapan` */
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nip` varchar(120) DEFAULT NULL,
+  `nama` varchar(120) DEFAULT NULL,
+  `email` varchar(120) DEFAULT NULL,
+  `password` text DEFAULT NULL,
+  `golongan` varchar(120) DEFAULT NULL,
+  `jabatan` varchar(120) DEFAULT NULL,
+  `role` varchar(120) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `user` */
+
+insert  into `user`(`id`,`nip`,`nama`,`email`,`password`,`golongan`,`jabatan`,`role`,`createdAt`) values (1,'123456789','Bima Febriansyah aja','bimafebriansyah1002@gmail.com','$2y$10$vfjj5rG4i6h4/gPBtbi0quwC2Miq7f3wyMRbAeshN6a7e/4A9vdai','1','Department IT','admin','2021-07-31 10:33:25');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
