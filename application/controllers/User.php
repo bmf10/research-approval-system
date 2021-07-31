@@ -6,6 +6,10 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (get_role() !== 'admin') {
+			$this->session->set_flashdata('msg', '<script>$(document).ready(function() { toastr.error("Kamu Tidak Memiliki Akses") })</script>');
+			redirect('dashboard');
+		}
 	}
 
 	public function index()

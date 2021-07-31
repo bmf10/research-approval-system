@@ -26,7 +26,7 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="<?= base_url('assets/') ?>index2.html"><b>Donatur</b> v0.1</a>
+			<a href="<?= base_url('assets/') ?>index2.html"><b></b>SIEKIP</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="card">
@@ -35,7 +35,7 @@
 
 				<form action="<?= base_url('login/') ?>" method="post">
 					<div class="input-group mb-3">
-						<input type="text" name="username" class="form-control" placeholder="Username">
+						<input type="text" name="email" class="form-control" placeholder="Email">
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-envelope"></span>

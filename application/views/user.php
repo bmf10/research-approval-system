@@ -101,7 +101,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('#donation_menu').addClass('active')
+		$('#user_menu').addClass('active')
 
 		$("#table").DataTable({
 			"responsive": true,

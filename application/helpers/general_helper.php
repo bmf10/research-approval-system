@@ -11,6 +11,15 @@ function is_login()
 	}
 }
 
+function get_role()
+{
+	is_login();
+
+	$CI = get_instance();
+	$role = $CI->session->userdata('role');
+	return $role;
+}
+
 function date_readable($date, $is_datetime = false)
 {
 	if ($is_datetime) {
