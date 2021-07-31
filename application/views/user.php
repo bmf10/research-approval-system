@@ -121,6 +121,7 @@
 					$('#jabatan').val(res.jabatan)
 					$('#role').val(res.role)
 					$('#modal').modal('show')
+					$('#password').attr('required', false)
 				},
 				error: err => {
 					console.log(err)
@@ -131,6 +132,7 @@
 		$('#modal').on('hidden.bs.modal', function(e) {
 			$('#id').val('')
 			$('#form').trigger('reset')
+			$('#password').attr('required', true)
 		})
 	})
 </script>

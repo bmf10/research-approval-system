@@ -81,14 +81,35 @@
 								</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('user') ?>" class="nav-link" id="user_menu">
-								<i class="nav-icon fas fa-users"></i>
-								<p>
-									User
-								</p>
-							</a>
-						</li>
+						<?php if (get_role() === 'admin') : ?>
+							<li class="nav-item">
+								<a href="<?= base_url('user') ?>" class="nav-link" id="user_menu">
+									<i class="nav-icon fas fa-users"></i>
+									<p>
+										User
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
+									<i class="nav-icon fas fa-users"></i>
+									<p>
+										Penelitian
+									</p>
+								</a>
+							</li>
+						<?php endif ?>
+
+						<?php if (get_role() === 'peneliti') : ?>
+							<li class="nav-item">
+								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
+									<i class="nav-icon fas fa-users"></i>
+									<p>
+										Penelitian
+									</p>
+								</a>
+							</li>
+						<?php endif ?>
 						<li class="nav-item">
 							<a href="<?= base_url('dashboard/logout') ?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
