@@ -8,6 +8,8 @@ class Penelitian extends CI_Controller
 		parent::__construct();
 		is_login();
 		$this->load->model('PenelitianModel');
+		$this->load->model('EvaluasiModel');
+		$this->load->model('PenilaianModel');
 	}
 
 	public function index()
@@ -64,10 +66,17 @@ class Penelitian extends CI_Controller
 			redirect('penelitian');
 		}
 
+		$evaluasi = $this->EvaluasiModel->find_by_penelitian($id);
+		$pernyataan = $evaluasi ? $this->db->get_where('pernyataan', ['id_evaluasi' => $evaluasi->id])->result() : [];
+		$penilaian = $this->PenilaianModel->find_by_penelitian($id);
+
 		$data = [
 			'title' => 'Detail Penelitian',
 			'penelitian' => $penelitian,
-			'tahapan' => $this->db->get_where('tahapan', ['id_penelitian' => $id])->result()
+			'tahapan' => $this->db->get_where('tahapan', ['id_penelitian' => $id])->result(),
+			'evaluasi' => $evaluasi,
+			'pernyataan' => $pernyataan,
+			'penilaian' => $penilaian
 		];
 
 		$this->template->load('template', 'penelitian/detail', $data);
@@ -136,7 +145,7 @@ class Penelitian extends CI_Controller
 		$penelitian = $this->PenelitianModel->find_one($id);
 
 		if (get_role() === 'peneliti' && $penelitian->id_user !== get_session('id') || get_role() === 'anggota_pme' || get_role() === 'kepala_pme') {
-			$this->session->set_flashdata('msg', '<script>$(document).ready(function() { toastr.danger("Anda tidak memiliki akses") })</script>');
+			$this->session->set_flashdata('msg', '<script>$(document).ready(function() { toastr.error("Anda tidak memiliki akses") })</script>');
 			redirect('penelitian');
 		}
 

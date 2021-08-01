@@ -109,5 +109,10 @@
 <script>
 	$(document).ready(function() {
 		$('#penelitian_menu').addClass('active')
+
+		$("#table").DataTable({
+			"responsive": true,
+			"autoWidth": false,
+		})
 	})
 </script>

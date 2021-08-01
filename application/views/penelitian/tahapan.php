@@ -50,7 +50,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form id="form" enctype="multipart/form-data" action="<?= base_url('penelitian/tahapan') ?>" method="POST" autocomplete="off">
+			<form id="form_tahapan" enctype="multipart/form-data" action="<?= base_url('penelitian/tahapan') ?>" method="POST" autocomplete="off">
 				<div class="modal-body">
 					<input type="hidden" name="id_penelitian" value="<?= $penelitian->id ?>" />
 					<div class="form-group">

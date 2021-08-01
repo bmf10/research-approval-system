@@ -67,6 +67,8 @@
 			</div>
 		</div>
 		<?php include 'tahapan.php' ?>
+		<?php include 'evaluasi.php' ?>
+		<?php include 'penilaian.php' ?>
 	</div>
 </div>
 

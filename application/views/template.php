@@ -100,7 +100,7 @@
 							</li>
 						<?php endif ?>
 
-						<?php if (get_role() === 'peneliti') : ?>
+						<?php if (get_role() === 'peneliti' || get_role() === 'anggota_pme' || get_role() === 'kepala_pme') : ?>
 							<li class="nav-item">
 								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
 									<i class="nav-icon fas fa-users"></i>
