@@ -50,6 +50,7 @@
 									<td id="total_bobot_nilai"></td>
 									<td id="total_skor_nilai"></td>
 									<td id="total_nilai_nilai"></td>
+									<td></td>
 								</tr>
 							<?php endif ?>
 						</tbody>

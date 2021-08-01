@@ -29,7 +29,7 @@
 									<td><?= $d->judul ?></td>
 									<td><?= $d->lokasi ?></td>
 									<td><?= $d->jumlah_anggota ?></td>
-									<td><?= $d->jumlah_biaya ?></td>
+									<td><?= rupiah($d->jumlah_biaya) ?></td>
 									<td>
 										<a href="<?= 'penelitian/detail/' . $d->id ?>" class="btn btn-sm btn-info mx-1">Detail</a>
 									</td>

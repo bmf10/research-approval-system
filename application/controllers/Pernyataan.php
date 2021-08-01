@@ -39,6 +39,10 @@ class Pernyataan extends CI_Controller
 
 	public function get_by_evaluasi($id)
 	{
+		if (!$id) {
+			response('error', 300);
+		}
+
 		$data = $this->db->get_where('pernyataan', ['id_evaluasi' => $id])->result();
 		response($data);
 	}

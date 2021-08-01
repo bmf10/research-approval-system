@@ -14,6 +14,11 @@
 					Edit Evaluasi
 				</button>
 			<?php endif ?>
+			<?php if ($evaluasi) : ?>
+				<a target="_blank" href="<?= base_url('penelitian/export_pdf/' . $penelitian->id)  ?>" type="button" class="btn btn-success btn-sm mr-2  float-right">
+					Export PDF
+				</a>
+			<?php endif ?>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -174,8 +179,6 @@
 				nilai_value[i] = skor_values[i] * (bobot_values[i] / 100)
 			}
 
-			console.log(nilai_value)
-
 			$('.nilai').each(function(index) {
 				$(this).val(nilai_value[index])
 			})
@@ -202,19 +205,23 @@
 		})
 
 		$('#edit_evaluasi').click(function() {
-			$.get({
-				url: `<?= base_url('evaluasi/get_one/' . $evaluasi->id) ?>`,
-				success: res => {
-					$('#id_evaluasi_edit').val(res.id)
-					$('#status_edit').val(res.status)
-					$('#komentar_edit').val(res.komentar)
-					$('#id_penelitian_evaluasi_edit').val(res.id_penelitian)
-					$('#modal_evaluasi_edit').modal('show')
-				},
-				error: err => {
-					console.log(err)
-				}
-			})
+			const evaluasi_id = "<?= $evaluasi ? $evaluasi->id : 'empty' ?>"
+			if (evaluasi_id !== 'empty') {
+				$.get({
+					url: `<?= base_url('evaluasi/get_one/') ?>${evaluasi_id}`,
+					success: res => {
+						$('#id_evaluasi_edit').val(res.id)
+						$('#status_edit').val(res.status)
+						$('#komentar_edit').val(res.komentar)
+						$('#id_penelitian_evaluasi_edit').val(res.id_penelitian)
+						$('#modal_evaluasi_edit').modal('show')
+					},
+					error: err => {
+						console.log(err)
+					}
+				})
+			}
+
 		})
 	})
 </script>

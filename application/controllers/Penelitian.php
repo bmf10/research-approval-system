@@ -153,4 +153,42 @@ class Penelitian extends CI_Controller
 		$this->session->set_flashdata('msg', '<script>$(document).ready(function() { toastr.success("Penelitian Berhasil Dihapus") })</script>');
 		redirect('penelitian');
 	}
+
+	public function export_pdf($id)
+	{
+		$this->load->library('pdf');
+
+		$evaluasi = $this->EvaluasiModel->find_by_penelitian($id);
+		$penelitian = $this->PenelitianModel->find_one($id);
+
+		if (!$evaluasi || !$penelitian) {
+			$this->session->set_flashdata('msg', '<script>$(document).ready(function() { toastr.error("Data Tidak Ditemukan") })</script>');
+			redirect('penelitian');
+		}
+
+		$pernyataan = $this->db->get_where('pernyataan', ['id_evaluasi' => $evaluasi->id])->result();
+
+		$total_bobot = 0;
+		$total_skor = 0;
+		$total_nilai = 0;
+
+		for ($i = 0; $i < count($pernyataan); $i++) {
+			$total_bobot = $total_bobot + $pernyataan[$i]->bobot;
+			$total_skor = $total_skor + $pernyataan[$i]->skor;
+			$total_nilai = $total_nilai + $pernyataan[$i]->nilai;
+		}
+
+		$data = [
+			'penelitian' => $penelitian,
+			'evaluasi' => $evaluasi,
+			'pernyataan' => $pernyataan,
+			'total_bobot' => $total_bobot,
+			'total_skor' => $total_skor,
+			'total_nilai' => $total_nilai
+		];
+
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = time() . "-Laporan Monitoring " . $penelitian->judul . ".pdf";
+		$this->pdf->load_view('pdf/evaluasi', $data);
+	}
 }
