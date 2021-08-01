@@ -15,6 +15,6 @@
 ## Installation
 * Copy Paste into your localhost server folder, example: ```C:/xampp/htdocs/```
 * Import Database in database folder into your computer with PhpMyAdmin or anything else and **DO NOT CREATE DATABASE JUST IMPORT AND YOUR DATABASE WILL BE CREATED**
-* Start with link http://localhost/donation-web-app/
+* Start with link http://localhost/research-approval-system/
 * Login with email: ```admin@mail.com``` and password: ```abcd4321```
 * Enjoy!!!
