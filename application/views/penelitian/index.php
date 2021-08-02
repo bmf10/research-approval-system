@@ -14,12 +14,13 @@
 					<table id="table" class="table table-bordered table-striped">
 						<thead>
 							<th>No</th>
-							<th>Nama</th>
+							<th>Nama Peneliti</th>
 							<th>Judul</th>
 							<th>Lokasi</th>
 							<th>Jumlah Anggota</th>
 							<th>Jumlah Biaya</th>
-							<th>Action</th>
+							<th>Status Evaluasi</th>
+							<th data-priority="1">Action</th>
 						</thead>
 						<tbody>
 							<?php foreach ($penelitian as $key => $d) : ?>
@@ -30,6 +31,7 @@
 									<td><?= $d->lokasi ?></td>
 									<td><?= $d->jumlah_anggota ?></td>
 									<td><?= rupiah($d->jumlah_biaya) ?></td>
+									<td style="text-transform: capitalize;"><?= $d->status ? $d->status : 'belum dievaluasi' ?></td>
 									<td>
 										<a href="<?= 'penelitian/detail/' . $d->id ?>" class="btn btn-sm btn-info mx-1">Detail</a>
 									</td>

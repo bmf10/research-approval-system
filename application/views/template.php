@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Donatur Web App</title>
+	<title>SIEKIP</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -90,26 +90,32 @@
 									</p>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
-									<i class="nav-icon fas fa-users"></i>
-									<p>
-										Penelitian
-									</p>
-								</a>
-							</li>
 						<?php endif ?>
 
-						<?php if (get_role() === 'peneliti' || get_role() === 'anggota_pme' || get_role() === 'kepala_pme') : ?>
-							<li class="nav-item">
-								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
-									<i class="nav-icon fas fa-users"></i>
-									<p>
-										Penelitian
-									</p>
-								</a>
-							</li>
-						<?php endif ?>
+						<li class="nav-item">
+							<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
+								<i class="nav-icon fas fa-book"></i>
+								<p>
+									Penelitian
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('evaluasi') ?>" class="nav-link" id="evaluasi_menu">
+								<i class="nav-icon fas fa-clipboard-check"></i>
+								<p>
+									Evaluasi
+								</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('penilaian') ?>" class="nav-link" id="penilaian_menu">
+								<i class="nav-icon far fa-edit"></i>
+								<p>
+									Penilaian
+								</p>
+							</a>
+						</li>
 						<li class="nav-item">
 							<a href="<?= base_url('dashboard/logout') ?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
@@ -132,7 +138,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><?= isset($title) ? $title : 'Donatur Web App' ?></h1>
+							<h1><?= isset($title) ? $title : 'Penelitian Web App' ?></h1>
 						</div>
 					</div>
 				</div><!-- /.container-fluid -->
