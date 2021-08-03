@@ -104,4 +104,14 @@ class Evaluasi extends CI_Controller
 
 		$this->template->load('template', 'evaluasi/detail', $data);
 	}
+
+	public function hasil()
+	{
+		$data = [
+			'title' => 'Evaluasi',
+			'evaluasi' => $this->EvaluasiModel->find_all(),
+		];
+
+		$this->template->load('template', 'evaluasi/hasil', $data);
+	}
 }

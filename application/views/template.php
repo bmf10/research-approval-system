@@ -116,6 +116,16 @@
 								</p>
 							</a>
 						</li>
+						<?php if (get_role() === 'kepala_pme') : ?>
+							<li class="nav-item">
+								<a href="<?= base_url('evaluasi/hasil') ?>" class="nav-link" id="hasil_menu">
+									<i class="nav-icon fas fa-clipboard-list"></i>
+									<p>
+										Hasil Evaluasi
+									</p>
+								</a>
+							</li>
+						<?php endif ?>
 						<li class="nav-item">
 							<a href="<?= base_url('dashboard/logout') ?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
