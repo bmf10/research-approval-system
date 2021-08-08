@@ -21,7 +21,7 @@ class PenilaianModel extends CI_Model
 
 	function find_all()
 	{
-		$this->db->select(['sum(bobot) as total_bobot', 'sum(nilai) as total_nilai', 'sum(skor) as total_skor', 'penilaian.created_at as created_at', 'nama', 'judul', 'penelitian.id as id']);
+		$this->db->select(['sum(bobot) as total_bobot', 'sum(nilai) as total_nilai', 'sum(skor) as total_skor', 'penilaian.created_at as created_at', 'nama', 'judul', 'penelitian.id as id', 'penelitian.id_user as id_peneliti']);
 		$this->db->from('penilaian');
 		$this->db->join('user', 'user.id = penilaian.id_penilai');
 		$this->db->join('penelitian', 'penelitian.id = penilaian.id_penelitian');

@@ -54,10 +54,17 @@ class Evaluasi extends CI_Controller
 			$this->session->set_flashdata('msg', '<script>$(document).ready(function() { toastr.success("Evaluasi berhasil ditambahkan") })</script>');
 			redirect('penelitian/detail/' . $this->input->post('id_penelitian'));
 		} else {
+			$evaluasi = $this->EvaluasiModel->find_all();
+
+			if (get_role() === 'peneliti') {
+				$evaluasi = array_filter($evaluasi, function ($var) {
+					return  $var->id_peneliti === get_session('id');
+				});
+			}
 
 			$data = [
 				'title' => 'Evaluasi',
-				'evaluasi' => $this->EvaluasiModel->find_all(),
+				'evaluasi' => $evaluasi,
 			];
 
 			$this->template->load('template', 'evaluasi/index', $data);
@@ -107,9 +114,17 @@ class Evaluasi extends CI_Controller
 
 	public function hasil()
 	{
+		$evaluasi = $this->EvaluasiModel->find_all();
+
+		if (get_role() === 'peneliti') {
+			$evaluasi = array_filter($evaluasi, function ($var) {
+				return $var->id_peneliti === get_session('id');
+			});
+		}
+
 		$data = [
-			'title' => 'Evaluasi',
-			'evaluasi' => $this->EvaluasiModel->find_all(),
+			'title' => 'Hasil Evaluasi',
+			'evaluasi' => $evaluasi,
 		];
 
 		$this->template->load('template', 'evaluasi/hasil', $data);

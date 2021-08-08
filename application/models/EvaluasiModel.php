@@ -23,7 +23,7 @@ class EvaluasiModel extends CI_Model
 
 	function find_all()
 	{
-		$this->db->select(['judul', 'status', 'komentar', 'evaluasi.id as id', 'nama', 'evaluasi.created_at as created_at', 'id_penelitian']);
+		$this->db->select(['judul', 'status', 'komentar', 'evaluasi.id as id', 'nama', 'evaluasi.created_at as created_at', 'id_penelitian', 'penelitian.id_user as id_peneliti']);
 		$this->db->from('evaluasi');
 		$this->db->join('user', 'user.id = evaluasi.id_pengecek');
 		$this->db->join('penelitian', 'penelitian.id = evaluasi.id_penelitian');

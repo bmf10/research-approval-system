@@ -43,9 +43,17 @@ class Penilaian extends CI_Controller
 			redirect('penelitian/detail/' . $this->input->post('id_penelitian'));
 		} else {
 
+			$penilaian = $this->PenilaianModel->find_all();
+
+			if (get_role() === 'peneliti') {
+				$penilaian = array_filter($penilaian, function ($var) {
+					return $var->id_peneliti === get_session('id');
+				});
+			}
+
 			$data = [
 				'title' => 'Penilaian',
-				'penilaian' => $this->PenilaianModel->find_all(),
+				'penilaian' => $penilaian,
 			];
 
 			$this->template->load('template', 'penilaian/index', $data);
