@@ -135,7 +135,32 @@
 
 <script>
 	$(document).ready(function() {
-		const pernyataan = ["kesesuaian dengan peraturan", "ketertelusuran dokumen", "penguasaan materi", "sistematika penyajian", "kemampuan penyajian", "ketepatan waktu", "penggunaan metode", "pencapaian tujuan penelitian"]
+		const pernyataan = [{
+			pernyataan: "kesesuaian dengan peraturan",
+			bobot: 20
+		}, {
+			pernyataan: "ketertelusuran dokumen",
+			bobot: 10
+		}, {
+			pernyataan: "penguasaan materi",
+			bobot: 10
+		}, {
+			pernyataan: "sistematika penyajian",
+			bobot: 10
+		}, {
+			pernyataan: "kemampuan penyajian",
+			bobot: 10
+		}, {
+			pernyataan: "ketepatan waktu",
+			bobot: 15
+		}, {
+			pernyataan: "penggunaan metode",
+			bobot: 10
+		}, {
+			pernyataan: "pencapaian tujuan penelitian",
+			bobot: 15
+		}]
+
 		let html = "<div/>"
 		for (let i = 0; i < pernyataan.length; i++) {
 			html += `
@@ -143,13 +168,13 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="pernyataan">Pernyataan</label>
-								<input placeholder="Pernyataan" style="text-transform:capitalize" value="${pernyataan[i]}" name="pernyataan[]" class="form-control" required="required" readonly />
+								<input placeholder="Pernyataan" style="text-transform:capitalize" value="${pernyataan[i].pernyataan}" name="pernyataan[]" class="form-control" required="required" readonly />
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="bobot">Bobot %</label>
-								<input min="1" type="number" value="0" max="100" placeholder="Bobot" name="bobot[]" class="form-control bobot" required="required" />
+								<input min="1" type="number"  max="100" placeholder="Bobot" name="bobot[]" value="${pernyataan[i].bobot}" readonly class="form-control bobot" required="required" />
 							</div>
 						</div>
 						<div class="col-md-4">

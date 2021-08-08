@@ -20,6 +20,7 @@ class Penelitian extends CI_Controller
 				redirect('penelitian');
 			}
 			$data = $this->input->post();
+			$data['anggota'] = json_encode($data['anggota']);
 			$insert_id = $data['id'];
 			if (!isset($data['id']) || $data['id'] == '') {
 				$data['id_user'] = get_session('id');
@@ -70,13 +71,16 @@ class Penelitian extends CI_Controller
 		$pernyataan = $evaluasi ? $this->db->get_where('pernyataan', ['id_evaluasi' => $evaluasi->id])->result() : [];
 		$penilaian = $this->PenilaianModel->find_by_penelitian($id);
 
+		$decode = json_decode($penelitian->anggota);
+		$anggota =  gettype($decode) === 'array' ? $decode : [];
 		$data = [
 			'title' => 'Detail Penelitian',
 			'penelitian' => $penelitian,
 			'tahapan' => $this->db->get_where('tahapan', ['id_penelitian' => $id])->result(),
 			'evaluasi' => $evaluasi,
 			'pernyataan' => $pernyataan,
-			'penilaian' => $penilaian
+			'penilaian' => $penilaian,
+			'anggota' => $anggota
 		];
 
 		$this->template->load('template', 'penelitian/detail', $data);

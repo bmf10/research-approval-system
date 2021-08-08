@@ -107,7 +107,7 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="bobot">Bobot %</label>
-								<input id="bobot_nilai_edit" min="1" type="number" value="0" max="100" placeholder="Bobot" name="bobot" class="form-control bobot" required="required" />
+								<input readonly id="bobot_nilai_edit" min="1" type="number" value="0" max="100" placeholder="Bobot" name="bobot" class="form-control bobot" required="required" />
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -137,7 +137,23 @@
 	$(document).ready(function() {
 		count_all_nilai()
 
-		const penilaian = ["orientasi pelayanan", "komitmen", "inisiatif kerja", "kerja sama", "kepemimpinan"]
+		const penilaian = [{
+			penilaian: "orientasi pelayanan",
+			bobot: 20
+		}, {
+			penilaian: "komitmen",
+			bobot: 30
+		}, {
+			penilaian: "inisiatif kerja",
+			bobot: 25
+		}, {
+			penilaian: "kerja sama",
+			bobot: 15
+		}, {
+			penilaian: "kepemimpinan",
+			bobot: 10
+		}]
+
 		let penilaian_html = "<div/>"
 		for (let i = 0; i < penilaian.length; i++) {
 			penilaian_html += `
@@ -145,13 +161,13 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="pernyataan">Penilaian</label>
-								<input placeholder="Penilaian" style="text-transform:capitalize" value="${penilaian[i]}" name="pernyataan[]" class="form-control" required="required" readonly />
+								<input placeholder="Penilaian" style="text-transform:capitalize" value="${penilaian[i].penilaian}" name="pernyataan[]" class="form-control" required="required" readonly />
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="bobot">Bobot %</label>
-								<input min="1" type="number" value="0" max="100" placeholder="Bobot" name="bobot[]" class="form-control penilaian_bobot" required="required" />
+								<input min="1" type="number" value="${penilaian[i].bobot}" readonly max="100" placeholder="Bobot" name="bobot[]" class="form-control penilaian_bobot" required="required" />
 							</div>
 						</div>
 						<div class="col-md-4">

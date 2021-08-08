@@ -36,11 +36,18 @@
 								<input min="1" type="number" value="<?= $penelitian->jumlah_anggota ?>" placeholder="Jumlah Anggota" name="jumlah_anggota" class="form-control-plaintext" readonly required="required" />
 							</div>
 							<div class="form-group">
-								<label for="jumlah_biaya">Jumlah Biaya</label>
-								<input min="1" value="<?= rupiah($penelitian->jumlah_biaya) ?>" placeholder="Jumlah Biaya" name="jumlah_biaya" class="form-control-plaintext" readonly required="required" />
+								<label for="anggota">Nama Anggota</label>
+								<?php foreach ($anggota as $key => $value) {
+									$i = $key + 1;
+									echo "<p>$i. $value</p>";
+								} ?>
 							</div>
 						</div>
 						<div class="col-md-6">
+							<div class="form-group">
+								<label for="jumlah_biaya">Jumlah Biaya</label>
+								<input min="1" value="<?= rupiah($penelitian->jumlah_biaya) ?>" placeholder="Jumlah Biaya" name="jumlah_biaya" class="form-control-plaintext" readonly required="required" />
+							</div>
 							<div class="form-group">
 								<label for="tanggal_pelaksanaan">Tanggal Pelaksanaan</label>
 								<input type="date" value="<?= date_input($penelitian->tanggal_pelaksanaan)   ?>" placeholder="Tanggal Pelaksanaan" name="tanggal_pelaksanaan" class="form-control-plaintext" readonly required="required" />
@@ -114,7 +121,7 @@
 							</div>
 							<div class="form-group">
 								<label for="masa_pelaksanaan">Masa Pelaksanaan</label>
-								<input id="masa_pelaksanaan" placeholder="Masa Pelaksanaan" min="1900" max="2099" step="1" type="number" name="masa_pelaksanaan" class="form-control" required="required" />
+								<input id="masa_pelaksanaan" readonly placeholder="Masa Pelaksanaan" min="1900" max="2099" step="1" type="number" name="masa_pelaksanaan" class="form-control" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="target_temuan">Target Temuan</label>
@@ -125,6 +132,9 @@
 								<textarea id="abstrak" placeholder="Abstrak" name="abstrak" class="form-control" required="required"></textarea>
 							</div>
 						</div>
+					</div>
+					<hr>
+					<div class="row" id="anggota_html">
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -139,6 +149,8 @@
 <script>
 	$(document).ready(function() {
 		$('#penelitian_menu').addClass('active')
+
+		let anggota = [];
 
 		$('#edit').click(function() {
 			let data = $(this).data('id')
@@ -158,6 +170,22 @@
 					$('#target_temuan').val(res.target_temuan)
 					$('#abstrak').val(res.abstrak)
 					$('#modal').modal('show')
+
+					anggota = res.anggota ? JSON.parse(res.anggota) : [];
+
+					let html = '<div/>'
+					for (let index = 0; index < anggota.length; index++) {
+						html += `
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="anggota">Nama Anggota ${index+1}</label>
+								<input placeholder="Nama Anggota ${index+1}" value="${anggota[index]}" name="anggota[]" class="form-control" required="required" />
+							</div>
+						</div>
+						`
+					}
+
+					$('#anggota_html').html(html)
 				},
 				error: err => {
 					console.log(err)
@@ -182,6 +210,30 @@
 		$('#modal').on('hidden.bs.modal', function(e) {
 			$('#id').val('')
 			$('#form').trigger('reset')
+		})
+
+		$("#jumlah_anggota").on('input', function() {
+			const value = $(this).val() > 20 ? 20 : $(this).val()
+			let html = '<div/>'
+			for (let index = 0; index < value; index++) {
+				html += `
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="anggota">Nama Anggota ${index+1}</label>
+								<input placeholder="Nama Anggota ${index+1}" value="${anggota[index]?anggota[index]:''}" name="anggota[]" class="form-control" required="required" />
+							</div>
+						</div>
+						`
+			}
+
+			setTimeout(() => {
+				$('#anggota_html').html(html)
+			}, 1000)
+		})
+
+		$("#tanggal_pelaksanaan").on('input', function() {
+			const year = $(this).val().split('-')[0]
+			$("#masa_pelaksanaan").val(year)
 		})
 	})
 </script>

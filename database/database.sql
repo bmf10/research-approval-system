@@ -28,7 +28,7 @@ CREATE TABLE `evaluasi` (
   `id_pengecek` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `evaluasi` */
 
@@ -50,8 +50,9 @@ CREATE TABLE `penelitian` (
   `tanggal_pelaksanaan` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `aktif` tinyint(1) DEFAULT 1,
+  `anggota` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `penelitian` */
 
@@ -69,7 +70,7 @@ CREATE TABLE `penilaian` (
   `skor` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `penilaian` */
 
@@ -86,7 +87,7 @@ CREATE TABLE `pernyataan` (
   `skor` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pernyataan` */
 
@@ -102,7 +103,7 @@ CREATE TABLE `tahapan` (
   `keterangan` text DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tahapan` */
 
@@ -124,11 +125,11 @@ CREATE TABLE `user` (
   `role` varchar(120) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`nip`,`nama`,`email`,`telepon`,`username`,`password`,`golongan`,`jabatan_struktural`,`jabatan_fungsional`,`role`,`created_at`) values (1,'123456789','Admin','admin@mail.com',NULL,NULL,'$2y$10$dY.FMZBxzBhjHdBf9C6QZezHjqO5lQSciL6hQbNqpkigv6Zw5yXza','1','Department IT',NULL,'admin','2021-07-31 10:33:25');
+insert  into `user`(`id`,`nip`,`nama`,`email`,`telepon`,`username`,`password`,`golongan`,`jabatan_struktural`,`jabatan_fungsional`,`role`,`created_at`) values (7,'123456789','Admin','admin@mail.com','089693943932','bimafebriansyah','$2y$10$dY.FMZBxzBhjHdBf9C6QZezHjqO5lQSciL6hQbNqpkigv6Zw5yXza','1','Department IT',NULL,'admin','2021-07-31 10:33:25');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

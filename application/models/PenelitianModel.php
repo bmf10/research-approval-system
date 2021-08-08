@@ -18,7 +18,7 @@ class PenelitianModel extends CI_Model
 
 	function find_one($id)
 	{
-		$this->db->select(['nama', 'judul', 'lokasi', 'jumlah_anggota', "jumlah_biaya", 'objek_penelitian', 'masa_pelaksanaan', 'target_temuan', 'abstrak', 'tanggal_pelaksanaan', 'penelitian.id as id', 'user.id as id_user']);
+		$this->db->select(['nama', 'judul', 'lokasi', 'jumlah_anggota', "jumlah_biaya", 'objek_penelitian', 'masa_pelaksanaan', 'target_temuan', 'abstrak', 'tanggal_pelaksanaan', 'penelitian.id as id', 'user.id as id_user', 'anggota']);
 		$this->db->from('penelitian');
 		$this->db->where('penelitian.id', $id);
 		$this->db->where('aktif', true);

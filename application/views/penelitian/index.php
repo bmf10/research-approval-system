@@ -68,7 +68,7 @@
 							</div>
 							<div class="form-group">
 								<label for="jumlah_anggota">Jumlah Anggota</label>
-								<input id="jumlah_anggota" min="1" type="number" placeholder="Jumlah Anggota" name="jumlah_anggota" class="form-control" required="required" />
+								<input id="jumlah_anggota" max="20" min="1" type="number" placeholder="Jumlah Anggota" name="jumlah_anggota" class="form-control" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="jumlah_biaya">Jumlah Biaya</label>
@@ -86,7 +86,7 @@
 							</div>
 							<div class="form-group">
 								<label for="masa_pelaksanaan">Masa Pelaksanaan</label>
-								<input id="masa_pelaksanaan" placeholder="Masa Pelaksanaan" min="1900" max="2099" step="1" type="number" name="masa_pelaksanaan" class="form-control" required="required" />
+								<input id="masa_pelaksanaan" readonly placeholder="Masa Pelaksanaan" min="1900" max="2099" step="1" type="number" name="masa_pelaksanaan" class="form-control" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="target_temuan">Target Temuan</label>
@@ -97,6 +97,9 @@
 								<textarea id="abstrak" placeholder="Abstrak" name="abstrak" class="form-control" required="required"></textarea>
 							</div>
 						</div>
+					</div>
+					<hr>
+					<div class="row" id="anggota_html">
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -115,6 +118,30 @@
 		$("#table").DataTable({
 			"responsive": true,
 			"autoWidth": false,
+		})
+
+		$("#jumlah_anggota").on('input', function() {
+			const value = $(this).val() > 20 ? 20 : $(this).val()
+			let html = '<div/>'
+			for (let index = 0; index < value; index++) {
+				html += `
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="anggota">Nama Anggota ${index+1}</label>
+								<input placeholder="Nama Anggota ${index+1}" name="anggota[]" class="form-control" required="required" />
+							</div>
+						</div>
+						`
+			}
+
+			setTimeout(() => {
+				$('#anggota_html').html(html)
+			}, 1000)
+		})
+
+		$("#tanggal_pelaksanaan").on('input', function() {
+			const year = $(this).val().split('-')[0]
+			$("#masa_pelaksanaan").val(year)
 		})
 	})
 </script>

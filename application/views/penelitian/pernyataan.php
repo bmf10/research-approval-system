@@ -60,7 +60,7 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="bobot">Bobot %</label>
-								<input id="bobot_edit" min="1" type="number" value="0" max="100" placeholder="Bobot" name="bobot" class="form-control " required="required" />
+								<input readonly id="bobot_edit" min="1" type="number" value="0" max="100" placeholder="Bobot" name="bobot" class="form-control " required="required" />
 							</div>
 						</div>
 						<div class="col-md-4">

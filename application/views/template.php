@@ -81,6 +81,7 @@
 								</p>
 							</a>
 						</li>
+
 						<?php if (get_role() === 'admin') : ?>
 							<li class="nav-item">
 								<a href="<?= base_url('user') ?>" class="nav-link" id="user_menu">
@@ -90,32 +91,40 @@
 									</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
+									<i class="nav-icon fas fa-book"></i>
+									<p>
+										Penelitian
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('evaluasi') ?>" class="nav-link" id="evaluasi_menu">
+									<i class="nav-icon fas fa-clipboard-check"></i>
+									<p>
+										Evaluasi
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('penilaian') ?>" class="nav-link" id="penilaian_menu">
+									<i class="nav-icon far fa-edit"></i>
+									<p>
+										Penilaian
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('evaluasi/hasil') ?>" class="nav-link" id="hasil_menu">
+									<i class="nav-icon fas fa-clipboard-list"></i>
+									<p>
+										Hasil Evaluasi
+									</p>
+								</a>
+							</li>
 						<?php endif ?>
 
-						<li class="nav-item">
-							<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
-								<i class="nav-icon fas fa-book"></i>
-								<p>
-									Penelitian
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('evaluasi') ?>" class="nav-link" id="evaluasi_menu">
-								<i class="nav-icon fas fa-clipboard-check"></i>
-								<p>
-									Evaluasi
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="<?= base_url('penilaian') ?>" class="nav-link" id="penilaian_menu">
-								<i class="nav-icon far fa-edit"></i>
-								<p>
-									Penilaian
-								</p>
-							</a>
-						</li>
 						<?php if (get_role() === 'kepala_pme') : ?>
 							<li class="nav-item">
 								<a href="<?= base_url('evaluasi/hasil') ?>" class="nav-link" id="hasil_menu">
@@ -126,6 +135,69 @@
 								</a>
 							</li>
 						<?php endif ?>
+
+						<?php if (get_role() === 'peneliti') : ?>
+							<li class="nav-item">
+								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
+									<i class="nav-icon fas fa-book"></i>
+									<p>
+										Penelitian
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('penilaian') ?>" class="nav-link" id="penilaian_menu">
+									<i class="nav-icon far fa-edit"></i>
+									<p>
+										Penilaian
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('evaluasi/hasil') ?>" class="nav-link" id="hasil_menu">
+									<i class="nav-icon fas fa-clipboard-list"></i>
+									<p>
+										Hasil Evaluasi
+									</p>
+								</a>
+							</li>
+						<?php endif ?>
+
+						<?php if (get_role() === 'anggota_pme') : ?>
+							<li class="nav-item">
+								<a href="<?= base_url('penelitian') ?>" class="nav-link" id="penelitian_menu">
+									<i class="nav-icon fas fa-book"></i>
+									<p>
+										Penelitian
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('evaluasi') ?>" class="nav-link" id="evaluasi_menu">
+									<i class="nav-icon fas fa-clipboard-check"></i>
+									<p>
+										Evaluasi
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('penilaian') ?>" class="nav-link" id="penilaian_menu">
+									<i class="nav-icon far fa-edit"></i>
+									<p>
+										Penilaian
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('evaluasi/hasil') ?>" class="nav-link" id="hasil_menu">
+									<i class="nav-icon fas fa-clipboard-list"></i>
+									<p>
+										Hasil Evaluasi
+									</p>
+								</a>
+							</li>
+						<?php endif ?>
+
 						<li class="nav-item">
 							<a href="<?= base_url('dashboard/logout') ?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
